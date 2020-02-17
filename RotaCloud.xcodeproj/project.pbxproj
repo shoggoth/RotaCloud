@@ -144,9 +144,9 @@
 		FF2DB02B23FAC257009FABED /* NetComms */ = {
 			isa = PBXGroup;
 			children = (
+				FF2DB04A23FAD2C8009FABED /* RESTSession.swift */,
 				FF2DB02C23FAC257009FABED /* NetComms.h */,
 				FF2DB02D23FAC257009FABED /* Info.plist */,
-				FF2DB04A23FAD2C8009FABED /* RESTSession.swift */,
 			);
 			path = NetComms;
 			sourceTree = "<group>";
