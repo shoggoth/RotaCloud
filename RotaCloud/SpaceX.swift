@@ -8,15 +8,37 @@
 
 import Foundation
 
-struct Rocket : Codable {
+struct Dimension : Decodable {
+    
+    let meters: Float
+    let feet: Float
+}
+
+struct Mass : Decodable {
+    
+    let kg: Float
+    let lb: Float
+}
+
+struct Rocket : Decodable {
     
     let name: String
-//    let id: Int
-//    let active: Bool
-//    let stages: Int
+    let firstFlight: Date
+    let active: Bool
+    let country: String
+
+    let stages: Int
+    let boosters: Int
+    let height: Dimension
+    let diameter: Dimension
+    let mass: Mass
     
     enum CodingKeys : String, CodingKey {
         
         case name = "rocket_name"
+        case firstFlight = "first_flight"
+        
+        case active, country, stages, boosters
+        case height, diameter, mass
     }
 }

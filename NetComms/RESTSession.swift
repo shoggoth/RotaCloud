@@ -63,8 +63,11 @@ public class RESTSession {
                 // Check for nil data (204 No Content)
                 guard let data = data else { completion?(nil, NSError(domain: self.errorDomain, code: 204, userInfo: nil)); return }
 
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(.spaceXDate)
+                
                 // And that data decoded alright
-                if let decodedData = try? JSONDecoder().decode(T.self, from: data) { completion?(decodedData, nil) }
+                if let decodedData = try? decoder.decode(T.self, from: data) { completion?(decodedData, nil) }
                     
                 else {
                     // Report unexpected error response (400 Bad Request default)
@@ -99,4 +102,18 @@ public class RESTSession {
 
         self.makePOSTRequest(fromURL: url, withData: jsonData, headers: jsonHeaders, withMethod: method, completion: completion)
     }
+}
+
+private extension DateFormatter {
+    
+    static let spaceXDate: DateFormatter = {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        return formatter
+    }()
 }

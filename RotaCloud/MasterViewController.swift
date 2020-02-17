@@ -70,7 +70,6 @@ class MasterViewController: UIViewController, UITableViewDataSource {
         if let object = self.rockets?[indexPath.row] {
             
             cell.textLabel?.text = object.name
-                //cell.detailTextLabel?.text = "Cloth : \(object.cloth_number) Odds : \(object.current_odds) Form : \(object.formsummary)"
         }
         
         return cell
