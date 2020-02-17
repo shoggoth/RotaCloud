@@ -17,8 +17,22 @@ class MasterViewController: UIViewController, UITableViewDataSource {
         
         super.viewDidLoad()
         
-        // Load dummy data
-        rockets = [Rocket(name: "Test Rocket"), Rocket(name: "Test Rocket 2"), Rocket(name: "Test Rocket 3")]
+        // Load SpaceX rocket data from their API
+        let spaceXUrl  = URL(string: "https://api.spacexdata.com/v3/rockets?")
+        
+        RESTSession().makeGETRequest(fromURL: spaceXUrl) { (result: [Rocket]?, error: Error?) in
+            
+            // Check and assign the result of the API call
+            // TODO: Handle the error
+            guard let result = result else { return }
+            self.rockets = result
+            
+            // Data won't be delivered on the main thread: dispatch back to reload the UITableView
+            DispatchQueue.main.async { self.tableView.reloadData() }
+        }
+    }
+    
+    deinit {
         
         RESTSession().cancelAllTasks()
     }
