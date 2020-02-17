@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NetComms
 
 class MasterViewController: UIViewController, UITableViewDataSource {
 
@@ -18,6 +19,8 @@ class MasterViewController: UIViewController, UITableViewDataSource {
         
         // Load dummy data
         rockets = [Rocket(name: "Test Rocket"), Rocket(name: "Test Rocket 2"), Rocket(name: "Test Rocket 3")]
+        
+        RESTSession().cancelAllTasks()
     }
     
     // MARK: - UITableView data source
