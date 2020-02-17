@@ -18,6 +18,7 @@
 		FF2DB03C23FAC257009FABED /* NetComms.h in Headers */ = {isa = PBXBuildFile; fileRef = FF2DB02C23FAC257009FABED /* NetComms.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FF2DB03F23FAC257009FABED /* NetComms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2DB02A23FAC257009FABED /* NetComms.framework */; };
 		FF2DB04023FAC257009FABED /* NetComms.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF2DB02A23FAC257009FABED /* NetComms.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FF2DB04923FACCA6009FABED /* SpaceX.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DB04823FACCA6009FABED /* SpaceX.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		FF2DB03223FAC257009FABED /* NetCommsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetCommsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF2DB03923FAC257009FABED /* NetCommsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetCommsTests.swift; sourceTree = "<group>"; };
 		FF2DB03B23FAC257009FABED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF2DB04823FACCA6009FABED /* SpaceX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceX.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			children = (
 				FF2DB00F23FAC19D009FABED /* AppDelegate.swift */,
 				FF2DB01323FAC19D009FABED /* MasterViewController.swift */,
+				FF2DB04823FACCA6009FABED /* SpaceX.swift */,
 				FF2DB01523FAC19D009FABED /* Main.storyboard */,
 				FF2DB01823FAC1A0009FABED /* Assets.xcassets */,
 				FF2DB01A23FAC1A0009FABED /* LaunchScreen.storyboard */,
@@ -300,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF2DB01423FAC19D009FABED /* MasterViewController.swift in Sources */,
+				FF2DB04923FACCA6009FABED /* SpaceX.swift in Sources */,
 				FF2DB01023FAC19D009FABED /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
