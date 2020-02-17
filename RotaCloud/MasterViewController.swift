@@ -37,7 +37,21 @@ class MasterViewController: UIViewController, UITableViewDataSource {
         RESTSession().cancelAllTasks()
     }
     
-    // MARK: - UITableView data source
+    // MARK: Segues
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showDetail" {
+            
+            if let indexPath = tableView.indexPathForSelectedRow, let detailController = segue.destination as? DetailViewController {
+                
+                // Inject the selected dependency into the detail view
+                detailController.rocket = rockets?[indexPath.row]
+            }
+        }
+    }
+
+    // MARK: UITableView data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
         

@@ -20,6 +20,7 @@
 		FF2DB04023FAC257009FABED /* NetComms.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF2DB02A23FAC257009FABED /* NetComms.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF2DB04923FACCA6009FABED /* SpaceX.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DB04823FACCA6009FABED /* SpaceX.swift */; };
 		FF2DB04B23FAD2C8009FABED /* RESTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DB04A23FAD2C8009FABED /* RESTSession.swift */; };
+		FF2DB04F23FAD93B009FABED /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DB04E23FAD93B009FABED /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		FF2DB03B23FAC257009FABED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF2DB04823FACCA6009FABED /* SpaceX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceX.swift; sourceTree = "<group>"; };
 		FF2DB04A23FAD2C8009FABED /* RESTSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTSession.swift; sourceTree = "<group>"; };
+		FF2DB04E23FAD93B009FABED /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			children = (
 				FF2DB00F23FAC19D009FABED /* AppDelegate.swift */,
 				FF2DB01323FAC19D009FABED /* MasterViewController.swift */,
+				FF2DB04E23FAD93B009FABED /* DetailViewController.swift */,
 				FF2DB04823FACCA6009FABED /* SpaceX.swift */,
 				FF2DB01523FAC19D009FABED /* Main.storyboard */,
 				FF2DB01823FAC1A0009FABED /* Assets.xcassets */,
@@ -309,6 +312,7 @@
 				FF2DB01423FAC19D009FABED /* MasterViewController.swift in Sources */,
 				FF2DB04923FACCA6009FABED /* SpaceX.swift in Sources */,
 				FF2DB01023FAC19D009FABED /* AppDelegate.swift in Sources */,
+				FF2DB04F23FAD93B009FABED /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
