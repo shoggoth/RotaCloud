@@ -51,8 +51,6 @@ class DetailViewController : UITableViewController {
             heightLabel.text = useMetric ? "\(rocket.height.meters)m" : "\(rocket.height.feet) feet"
             diameterLabel.text = useMetric ? "\(rocket.diameter.meters)m" : "\(rocket.diameter.feet) feet"
             massLabel.text = useMetric ? "\(rocket.mass.kg)kg" : "\(rocket.mass.lb)lb"
-
-            print(rocket)
         }
     }
 }
