@@ -24,6 +24,7 @@ struct Rocket : Decodable {
     
     let name: String
     let firstFlight: Date
+    let description: String
     let active: Bool
     let country: String
 
@@ -38,7 +39,7 @@ struct Rocket : Decodable {
         case name = "rocket_name"
         case firstFlight = "first_flight"
         
-        case active, country, stages, boosters
+        case description, active, country, stages, boosters
         case height, diameter, mass
     }
 }

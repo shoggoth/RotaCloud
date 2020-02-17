@@ -381,6 +381,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="coX-UN-Eqt"/>
+                    <connections>
+                        <outlet property="activeLabel" destination="Q4z-Dw-54T" id="GeD-lT-DiN"/>
+                        <outlet property="boosterLabel" destination="DLR-cT-Zyy" id="QkR-h2-EJ3"/>
+                        <outlet property="countryLabel" destination="r5k-a5-y92" id="dAX-gh-n9M"/>
+                        <outlet property="descriptionTextView" destination="mbN-KE-tYX" id="XdZ-4f-bAa"/>
+                        <outlet property="diameterLabel" destination="Myu-ZS-exb" id="c7G-Ze-q52"/>
+                        <outlet property="firstFlightLabel" destination="YJc-gw-cBO" id="nG5-KP-D9V"/>
+                        <outlet property="heightLabel" destination="IQl-Y2-0pd" id="H89-gH-ByD"/>
+                        <outlet property="massLabel" destination="Cae-Vh-OHS" id="pz2-ye-cia"/>
+                        <outlet property="stagesLabel" destination="f7V-dT-p5S" id="YHf-e6-X4f"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6U3-MX-Co4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
