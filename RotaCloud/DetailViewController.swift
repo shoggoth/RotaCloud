@@ -33,7 +33,7 @@ class DetailViewController : UITableViewController {
             descriptionTextView.text = rocket.description
             
             informationCells[0].detailTextLabel?.text = rocket.active ? "Yes" : "No"
-            informationCells[1].detailTextLabel?.text = DateFormatter.localizedString(from: rocket.firstFlight, dateStyle: .short, timeStyle: .none)
+            informationCells[1].detailTextLabel?.text = DateFormatter.localizedString(from: rocket.firstFlight, dateStyle: .medium, timeStyle: .none)
             informationCells[2].detailTextLabel?.text = rocket.country
             
             statisticsCells[0].detailTextLabel?.text = String(rocket.stages)
