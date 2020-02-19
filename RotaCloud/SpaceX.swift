@@ -12,12 +12,16 @@ struct Dimension : Decodable {
     
     let meters: Float
     let feet: Float
+    
+    func description(useMetric: Bool = true) -> String { return useMetric ? "\(self.meters)m" : "\(self.feet) feet" }
 }
 
 struct Mass : Decodable {
     
     let kg: Float
     let lb: Float
+    
+    func description(useMetric: Bool = true) -> String { return useMetric ? "\(self.kg)kg" : "\(self.lb)lb" }
 }
 
 struct Rocket : Decodable {

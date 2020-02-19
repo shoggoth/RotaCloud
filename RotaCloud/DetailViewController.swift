@@ -16,16 +16,10 @@ class DetailViewController : UITableViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     
     // Information
-    @IBOutlet weak var activeLabel: UILabel!
-    @IBOutlet weak var firstFlightLabel: UILabel!
-    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet var informationCells: [UITableViewCell]!
     
     // Statistics
-    @IBOutlet weak var stagesLabel: UILabel!
-    @IBOutlet weak var boosterLabel: UILabel!
-    @IBOutlet weak var heightLabel: UILabel!
-    @IBOutlet weak var diameterLabel: UILabel!
-    @IBOutlet weak var massLabel: UILabel!
+    @IBOutlet var statisticsCells: [UITableViewCell]!
     
     override func viewDidLoad() {
         
@@ -38,19 +32,18 @@ class DetailViewController : UITableViewController {
             // Fill in all the details from the fetched data
             descriptionTextView.text = rocket.description
             
-            activeLabel.text = rocket.active ? "Yes" : "No"
-            firstFlightLabel.text = DateFormatter.localizedString(from: rocket.firstFlight, dateStyle: .short, timeStyle: .none)
-            countryLabel.text = rocket.country
+            informationCells[0].detailTextLabel?.text = rocket.active ? "Yes" : "No"
+            informationCells[1].detailTextLabel?.text = DateFormatter.localizedString(from: rocket.firstFlight, dateStyle: .short, timeStyle: .none)
+            informationCells[2].detailTextLabel?.text = rocket.country
             
-            stagesLabel.text = String(rocket.stages)
-            boosterLabel.text = String(rocket.boosters)
+            statisticsCells[0].detailTextLabel?.text = String(rocket.stages)
+            statisticsCells[1].detailTextLabel?.text = String(rocket.boosters)
             
             // TODO: Replace this with a system based on MeasurementFormatter
             let useMetric = Locale.current.usesMetricSystem
-            
-            heightLabel.text = useMetric ? "\(rocket.height.meters)m" : "\(rocket.height.feet) feet"
-            diameterLabel.text = useMetric ? "\(rocket.diameter.meters)m" : "\(rocket.diameter.feet) feet"
-            massLabel.text = useMetric ? "\(rocket.mass.kg)kg" : "\(rocket.mass.lb)lb"
+            statisticsCells[2].detailTextLabel?.text = rocket.height.description(useMetric: useMetric)
+            statisticsCells[3].detailTextLabel?.text = rocket.diameter.description(useMetric: useMetric)
+            statisticsCells[4].detailTextLabel?.text = rocket.mass.description(useMetric: useMetric)
         }
     }
 }
