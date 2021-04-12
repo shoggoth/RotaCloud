@@ -18,17 +18,24 @@ class MasterViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         // Load SpaceX rocket data from their API
-        let spaceXUrl  = URL(string: "https://api.spacexdata.com/v3/rockets?")
+        let spaceXUrl  = URL(string: "https://api.spacexdata.com/v3/rockets")
         
-        RESTSession().makeGETRequest(fromURL: spaceXUrl) { (result: [Rocket]?, error: Error?) in
+        // Dates have a special format
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(.spaceXDate)
+
+        RESTSession().sendRequest(fromURL: spaceXUrl, decoder: decoder) { (result: Result<[Rocket]?, RESTSession.RequestError>) in
             
             // Check and assign the result of the API call
-            // TODO: Handle the error
-            guard let result = result else { return }
-            self.rockets = result
-            
-            // Data won't be delivered on the main thread: dispatch back to reload the UITableView
-            DispatchQueue.main.async { self.tableView.reloadData() }
+            // TODO: Handle the error properly
+            if case .success(let rockets) = result {
+                
+                self.rockets = rockets
+                
+                // Data won't be delivered on the main thread: dispatch back to reload the UITableView
+                DispatchQueue.main.async { self.tableView.reloadData() }
+
+            } else { fatalError("Error fetching the rockets \(result)") }
         }
     }
     
@@ -80,3 +87,16 @@ class MasterViewController: UIViewController, UITableViewDataSource {
     var rockets: [Rocket]?
 }
 
+private extension DateFormatter {
+    
+    static let spaceXDate: DateFormatter = {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        return formatter
+    }()
+}

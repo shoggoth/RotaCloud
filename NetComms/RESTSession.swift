@@ -9,21 +9,17 @@
 import Foundation
 
 public class RESTSession {
-
+    
     private let session: URLSession
-    private let errorDomain: String
 
     // MARK: Lifecycle
     
-    public init(session: URLSession = URLSession(configuration: .default), errorDomain: String = "mobi.dogstar.NETComms.RESTSession") {
+    public init(session: URLSession = URLSession(configuration: .default)) {
         
         // Dependency injection with defaults.
         self.session = session
-        self.errorDomain = errorDomain
     }
-    
-    deinit { cancelAllTasks() }
-    
+
     // MARK: Commands
     
     public func cancelAllTasks() {
@@ -36,63 +32,79 @@ public class RESTSession {
         }
     }
     
-    // MARK: Requests
+    // MARK: Errors
 
-    public func makeRequest<T : Decodable>(fromURL url: URL?, withData data: Data?, headers: [String : String?]? = nil, withMethod method: String?, completion:((T?, Error?) -> Void)? = nil) {
+    public enum RequestError : Error {
         
-        // Make sure we can construct a valid URL
-        guard let url = url else { completion?(nil, NSError(domain: self.errorDomain, code: 404, userInfo: nil)); return }
+        case badURLError
+        case noDataError
+        case decodingError
+        case clientError(Error)     // Error from URLSession
+        case serverError(Int)       // Error from HTTP server
+    }
+    
+    // MARK: REST methods
+
+    public func sendRequest<T : Decodable>(_ request: URLRequest, decoder: JSONDecoder = .init(), completion: ((Result<T, RequestError>) -> Void)? = nil) {
         
-        // Create the request
+        // Start the session
+        session.dataTask(with: request, completionHandler: { data, resp, error in
+
+            // Check client side error condition
+            if let error = error { completion?(.failure(.clientError(error))); return }
+            // Check server side status code
+            if let status = (resp as? HTTPURLResponse)?.statusCode, status != 200 { completion?(.failure(.serverError(status))); return }
+            // Check for nil data
+            guard let data = data else { completion?(.failure(.noDataError)); return }
+            
+            // Check that data decoded alright.
+            if let decodedData = try? decoder.decode(T.self, from: data) { completion?(.success(decodedData)) } else { completion?(.failure(.decodingError)) }
+            
+        }).resume()
+    }
+
+    public func sendRequest<T : Decodable>(fromURL url: URL?,
+                                           data: Data? = nil,
+                                           headers: [String : String?]? = nil,
+                                           method: String? = nil,
+                                           decoder: JSONDecoder = .init(),
+                                           completion: ((Result<T, RequestError>) -> Void)? = nil)
+    {
+        
+        guard let url = url else { completion?(.failure(.badURLError)); return }
+
+        // Set up the URLRequest with the specified parameters.
         var request = URLRequest(url: url)
-        
-        // Make it a POST request with the specified parameters
         request.httpMethod = method
         request.httpBody = data
         
         // Put in the headers
-        for (key, value) in headers ?? [:] { request.setValue(value, forHTTPHeaderField: key) }
+        headers?.forEach { key, value in request.setValue(value, forHTTPHeaderField: key) }
         
-        // Start the session
-        session.dataTask(with: request, completionHandler: { data, response, error in
-            
-            // Check error condition
-            if let error = error { completion?(nil, error) }
-                
-            else {
-                // Check for nil data (204 No Content)
-                guard let data = data else { completion?(nil, NSError(domain: self.errorDomain, code: 204, userInfo: nil)); return }
-
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(.spaceXDate)
-                
-                // And that data decoded alright
-                if let decodedData = try? decoder.decode(T.self, from: data) { completion?(decodedData, nil) }
-                    
-                else {
-                    // Report unexpected error response (400 Bad Request default)
-                    completion?(nil, NSError(domain: self.errorDomain, code: (response as? HTTPURLResponse)?.statusCode ?? 400, userInfo: ["data" : String(data: data, encoding: .utf8) ?? "No data", "resp" : String(describing: response)]))
-                }
-            }
-        }).resume()
+        sendRequest(request, decoder: decoder, completion: completion)
     }
-
+    
     // MARK: Convenience methods
-    
-    public func makeGETRequest<T : Decodable>(fromURL url: URL?, headers: [String : String?]? = nil, completion: ((T?, Error?) -> Void)? = nil) {
+
+    public func sendGETRequest<T : Decodable>(fromURL url: URL?, headers: [String : String?]? = nil, completion: ((Result<T, RequestError>) -> Void)? = nil) {
         
-        makeRequest(fromURL: url, withData: nil, headers: headers, withMethod: nil, completion: completion)
+        sendRequest(fromURL: url, data: nil, headers: headers, method: nil, completion: completion)
     }
     
-    public func makePOSTRequest<T : Decodable>(fromURL url: URL?, withData data: Data, headers: [String : String?]? = nil, withMethod method: String = "POST", completion:((T?, Error?) -> Void)? = nil) {
+    public func sendPOSTRequest<T : Decodable>(fromURL url: URL?, data: Data, headers: [String : String?]? = nil, method: String = "POST", completion:((Result<T, RequestError>) -> Void)? = nil) {
         
-        makeRequest(fromURL: url, withData: data, headers: headers, withMethod: method, completion: completion)
+        sendRequest(fromURL: url, data: data, headers: headers, method: method, completion: completion)
     }
     
-    public func makePOSTRequest<T : Decodable, U : Encodable>(fromURL url: URL?, withParams params: U, headers: [String : String?]? = nil, withMethod method: String = "POST", completion:((T?, Error?) -> Void)? = nil) {
+    public func sendPOSTRequest<T : Decodable, U : Encodable>(fromURL url: URL?,
+                                                              withParams params: U,
+                                                              headers: [String : String?]? = nil,
+                                                              withMethod method: String = "POST",
+                                                              encoder: JSONEncoder = .init(), completion:((Result<T, RequestError>) -> Void)? = nil)
+    {
 
         // Encode to JSON
-        guard let jsonData = try? JSONEncoder().encode(params) else { completion?(nil, NSError(domain: self.errorDomain, code: 204, userInfo: nil)); return }
+        guard let jsonData = try? encoder.encode(params) else { completion?(.failure(.decodingError)); return }
         
         // Add JSON Headers
         var jsonHeaders = headers ?? [:]
@@ -100,20 +112,6 @@ public class RESTSession {
         jsonHeaders["Content-Type"] = "application/json; charset=utf-8"  // the request is JSON
         jsonHeaders["Accept"] = "application/json; charset=utf-8"        // the expected response is also JSON
 
-        self.makePOSTRequest(fromURL: url, withData: jsonData, headers: jsonHeaders, withMethod: method, completion: completion)
+        self.sendPOSTRequest(fromURL: url, data: jsonData, headers: jsonHeaders, method: method, completion: completion)
     }
-}
-
-private extension DateFormatter {
-    
-    static let spaceXDate: DateFormatter = {
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        
-        return formatter
-    }()
 }
