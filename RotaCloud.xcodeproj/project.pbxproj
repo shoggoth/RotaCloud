@@ -13,8 +13,6 @@
 		FF2DB01923FAC1A0009FABED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF2DB01823FAC1A0009FABED /* Assets.xcassets */; };
 		FF2DB01C23FAC1A0009FABED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF2DB01A23FAC1A0009FABED /* LaunchScreen.storyboard */; };
 		FF2DB02423FAC1BE009FABED /* iOS Dev Task in Resources */ = {isa = PBXBuildFile; fileRef = FF2DB02323FAC1BE009FABED /* iOS Dev Task */; };
-		FF2DB03323FAC257009FABED /* NetComms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2DB02A23FAC257009FABED /* NetComms.framework */; };
-		FF2DB03A23FAC257009FABED /* NetCommsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DB03923FAC257009FABED /* NetCommsTests.swift */; };
 		FF2DB03C23FAC257009FABED /* NetComms.h in Headers */ = {isa = PBXBuildFile; fileRef = FF2DB02C23FAC257009FABED /* NetComms.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FF2DB03F23FAC257009FABED /* NetComms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2DB02A23FAC257009FABED /* NetComms.framework */; };
 		FF2DB04023FAC257009FABED /* NetComms.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF2DB02A23FAC257009FABED /* NetComms.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -24,20 +22,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FF2DB03423FAC257009FABED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF2DB00423FAC19D009FABED /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FF2DB02923FAC257009FABED;
-			remoteInfo = NetComms;
-		};
-		FF2DB03623FAC257009FABED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF2DB00423FAC19D009FABED /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FF2DB00B23FAC19D009FABED;
-			remoteInfo = RotaCloud;
-		};
 		FF2DB03D23FAC257009FABED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF2DB00423FAC19D009FABED /* Project object */;
@@ -73,9 +57,6 @@
 		FF2DB02A23FAC257009FABED /* NetComms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetComms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF2DB02C23FAC257009FABED /* NetComms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetComms.h; sourceTree = "<group>"; };
 		FF2DB02D23FAC257009FABED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FF2DB03223FAC257009FABED /* NetCommsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetCommsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF2DB03923FAC257009FABED /* NetCommsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetCommsTests.swift; sourceTree = "<group>"; };
-		FF2DB03B23FAC257009FABED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF2DB04823FACCA6009FABED /* SpaceX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceX.swift; sourceTree = "<group>"; };
 		FF2DB04A23FAD2C8009FABED /* RESTSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTSession.swift; sourceTree = "<group>"; };
 		FF2DB04E23FAD93B009FABED /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -97,14 +78,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FF2DB02F23FAC257009FABED /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FF2DB03323FAC257009FABED /* NetComms.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -113,7 +86,6 @@
 			children = (
 				FF2DB00E23FAC19D009FABED /* RotaCloud */,
 				FF2DB02B23FAC257009FABED /* NetComms */,
-				FF2DB03823FAC257009FABED /* NetCommsTests */,
 				FF2DB00D23FAC19D009FABED /* Products */,
 			);
 			sourceTree = "<group>";
@@ -123,7 +95,6 @@
 			children = (
 				FF2DB00C23FAC19D009FABED /* RotaCloud.app */,
 				FF2DB02A23FAC257009FABED /* NetComms.framework */,
-				FF2DB03223FAC257009FABED /* NetCommsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,15 +123,6 @@
 				FF2DB02D23FAC257009FABED /* Info.plist */,
 			);
 			path = NetComms;
-			sourceTree = "<group>";
-		};
-		FF2DB03823FAC257009FABED /* NetCommsTests */ = {
-			isa = PBXGroup;
-			children = (
-				FF2DB03923FAC257009FABED /* NetCommsTests.swift */,
-				FF2DB03B23FAC257009FABED /* Info.plist */,
-			);
-			path = NetCommsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,25 +176,6 @@
 			productReference = FF2DB02A23FAC257009FABED /* NetComms.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		FF2DB03123FAC257009FABED /* NetCommsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FF2DB04523FAC257009FABED /* Build configuration list for PBXNativeTarget "NetCommsTests" */;
-			buildPhases = (
-				FF2DB02E23FAC257009FABED /* Sources */,
-				FF2DB02F23FAC257009FABED /* Frameworks */,
-				FF2DB03023FAC257009FABED /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FF2DB03523FAC257009FABED /* PBXTargetDependency */,
-				FF2DB03723FAC257009FABED /* PBXTargetDependency */,
-			);
-			name = NetCommsTests;
-			productName = NetCommsTests;
-			productReference = FF2DB03223FAC257009FABED /* NetCommsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -249,10 +192,6 @@
 					FF2DB02923FAC257009FABED = {
 						CreatedOnToolsVersion = 11.3.1;
 						LastSwiftMigration = 1130;
-					};
-					FF2DB03123FAC257009FABED = {
-						CreatedOnToolsVersion = 11.3.1;
-						TestTargetID = FF2DB00B23FAC19D009FABED;
 					};
 				};
 			};
@@ -271,7 +210,6 @@
 			targets = (
 				FF2DB00B23FAC19D009FABED /* RotaCloud */,
 				FF2DB02923FAC257009FABED /* NetComms */,
-				FF2DB03123FAC257009FABED /* NetCommsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -289,13 +227,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FF2DB02823FAC257009FABED /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FF2DB03023FAC257009FABED /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -324,27 +255,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FF2DB02E23FAC257009FABED /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FF2DB03A23FAC257009FABED /* NetCommsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		FF2DB03523FAC257009FABED /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FF2DB02923FAC257009FABED /* NetComms */;
-			targetProxy = FF2DB03423FAC257009FABED /* PBXContainerItemProxy */;
-		};
-		FF2DB03723FAC257009FABED /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FF2DB00B23FAC19D009FABED /* RotaCloud */;
-			targetProxy = FF2DB03623FAC257009FABED /* PBXContainerItemProxy */;
-		};
 		FF2DB03E23FAC257009FABED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FF2DB02923FAC257009FABED /* NetComms */;
@@ -585,44 +498,6 @@
 			};
 			name = Release;
 		};
-		FF2DB04623FAC257009FABED /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = NetCommsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = ltd.dogstar.NetCommsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RotaCloud.app/RotaCloud";
-			};
-			name = Debug;
-		};
-		FF2DB04723FAC257009FABED /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = NetCommsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = ltd.dogstar.NetCommsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RotaCloud.app/RotaCloud";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -649,15 +524,6 @@
 			buildConfigurations = (
 				FF2DB04223FAC257009FABED /* Debug */,
 				FF2DB04323FAC257009FABED /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FF2DB04523FAC257009FABED /* Build configuration list for PBXNativeTarget "NetCommsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FF2DB04623FAC257009FABED /* Debug */,
-				FF2DB04723FAC257009FABED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
